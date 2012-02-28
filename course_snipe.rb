@@ -31,6 +31,7 @@ term   = "#{year}#{seasons[season.downcase]}1"
 # for your platform of choice, just change this path to match your system.
 # Once again, I am REALLY sorry this had to happen...HTTPS is not easy...
 ca_file = "/opt/local/share/curl/curl-ca-bundle.crt"
+# ca_file = "/etc/ssl/certs/ca-certificates.crt" # for those who aren't running Macs
 
 uri = URI("https://compass-ssb.tamu.edu/pls/PROD/bwykschd.p_disp_detail_sched?term_in=#{term}&crn_in=#{crn}")
 
