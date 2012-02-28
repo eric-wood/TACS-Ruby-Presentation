@@ -29,6 +29,7 @@ term   = "#{year}#{seasons[season.downcase]}1"
 # macports "curl-ca-bundle" package; you can google where to find the equivalent
 # for your platform of choice, just change this path to match your system.
 ca_file = "/opt/local/share/curl/curl-ca-bundle.crt"
+# ca_file = "/etc/ssl/certs/ca-certificates.crt" # for those who aren't running Macs
 
 uri = URI("https://compass-ssb.tamu.edu/pls/PROD/bwykschd.p_disp_detail_sched?term_in=#{term}&crn_in=#{crn}")
 
