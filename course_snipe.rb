@@ -1,3 +1,6 @@
+# By Eric Wood for his presentation on Ruby for the Texas A&M Computing Society
+# Do as you wish with this, stay out of trouble...
+
 require 'net/http'
 require 'nokogiri'
 
@@ -15,19 +18,23 @@ seasons = {
   "fall"   => 3
 }
 
+# Read in our command line arguments!
 crn    = ARGV[0]
 season = ARGV[1]
 year   = ARGV[2]
 term   = "#{year}#{seasons[season.downcase]}1"
 
-#crn  = 17077 # CSCE 465
-#term = 201211
-
 # UGH hack central over here...
+# Here's the issue: Ruby doesn't have its own set of trusted CA certs
+# so we need to point it to where those are; in this case they're from the
+# macports "curl-ca-bundle" package; you can google where to find the equivalent
+# for your platform of choice, just change this path to match your system.
+# Once again, I am REALLY sorry this had to happen...HTTPS is not easy...
 ca_file = "/opt/local/share/curl/curl-ca-bundle.crt"
 
 uri = URI("https://compass-ssb.tamu.edu/pls/PROD/bwykschd.p_disp_detail_sched?term_in=#{term}&crn_in=#{crn}")
 
+# Get the page...
 https = Net::HTTP.new(uri.host, 443)
 https.use_ssl = true
 https.verify_mode = OpenSSL::SSL::VERIFY_PEER
