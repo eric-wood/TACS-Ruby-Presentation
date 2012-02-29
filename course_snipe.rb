@@ -28,7 +28,16 @@ term   = "#{year}#{seasons[season.downcase]}1"
 # so we need to point it to where those are; in this case they're from the
 # macports "curl-ca-bundle" package; you can google where to find the equivalent
 # for your platform of choice, just change this path to match your system.
+<<<<<<< HEAD
 ca_file = "/opt/local/share/curl/curl-ca-bundle.crt"
+=======
+# Once again, I am REALLY sorry this had to happen...HTTPS is not easy...
+mac_ca_file = "/opt/local/share/curl/curl-ca-bundle.crt"
+debian_ca_file = "/etc/ssl/certs/ca-certificates.crt" # for those who aren't running Macs
+
+ca_file = mac_path    if File.exist? mac_path
+ca_file = debian_path if File.exist? debian_path
+>>>>>>> f841cb9c9a79a62147fec6e2ff425d6dbfbcf926
 
 uri = URI("https://compass-ssb.tamu.edu/pls/PROD/bwykschd.p_disp_detail_sched?term_in=#{term}&crn_in=#{crn}")
 
